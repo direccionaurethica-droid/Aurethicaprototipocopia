@@ -1,0 +1,334 @@
+/**
+ * App.tsx - Aplicación principal de Auréthica
+ * Arquitectura limpia con páginas separadas
+ * Diseño premium estilo Zara
+ */
+
+import { useState, useEffect, lazy, Suspense } from 'react';
+
+// Router
+import { PageRouter, PageRoute } from './lib/router';
+
+// Providers
+import { ThemeProvider } from './contexts/ThemeContext';
+import { BlogProvider } from './contexts/BlogContext';
+import { SearchProvider } from './contexts/SearchContext';
+import { TranslationProvider } from './lib/i18n/useTranslation';
+import { JourneyProvider } from './contexts/JourneyContext';
+import { PremiumToastProvider } from './components/PremiumToast';
+import { SplashScreen } from './components/SplashScreen';
+
+// Types
+import type { CalibrationSelection, RegistrationData } from './lib/types';
+import { getGigiTone } from './lib/utils/helpers';
+
+// Mock users
+import { authenticateUser, type MockUser } from './lib/mock/mockUsers';
+
+// Dev tools
+import { DevQuickAccess } from './components/DevQuickAccess';
+import { CurrentUserBadge } from './components/CurrentUserBadge';
+import { DevTools } from './components/DevTools';
+
+function AppContent() {
+  // Estado de carga inicial
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [initialLoadingProgress, setInitialLoadingProgress] = useState(0);
+  
+  // Estado de navegación
+  const [currentPage, setCurrentPage] = useState<PageRoute>('landing');
+  
+  // Lista de páginas en orden del flujo
+  const pageFlow: PageRoute[] = [
+    'landing',
+    'login',
+    'register',
+    'email-verification',
+    'profile-choice',
+    'gigi-intro',
+    'test',
+    'avatar',
+    'app',
+    'pro-access',
+    'salon-registration',
+    'stylist-registration',
+  ];
+  
+  // Estado de loading
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('');
+  
+  // Datos del usuario
+  const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
+  const [gigiCalibration, setGigiCalibration] = useState<CalibrationSelection | null>(null);
+  const [avatarPhotos, setAvatarPhotos] = useState<File[]>([]);
+  
+  // Estado de usuario autenticado
+  const [authenticatedUser, setAuthenticatedUser] = useState<MockUser | null>(null);
+  const [isReturningUser, setIsReturningUser] = useState(false);
+
+  // Simular carga inicial de recursos
+  useEffect(() => {
+    const loadResources = async () => {
+      // Simular carga progresiva
+      await new Promise(resolve => setTimeout(resolve, 100));
+      setInitialLoadingProgress(30);
+      
+      // Esperar fuentes
+      await document.fonts.ready;
+      setInitialLoadingProgress(60);
+      
+      // Finalizar
+      await new Promise(resolve => setTimeout(resolve, 150));
+      setInitialLoadingProgress(100);
+    };
+
+    loadResources();
+  }, []);
+
+  // Helper para mostrar loading
+  const showLoading = (message: string, duration: number, onComplete: () => void) => {
+    setIsLoading(true);
+    setLoadingMessage(message);
+    setTimeout(() => {
+      setIsLoading(false);
+      onComplete();
+    }, duration);
+  };
+
+  // Datos de usuario construidos
+  const userData = authenticatedUser ? {
+    name: `${authenticatedUser.registrationData.nombre} ${authenticatedUser.registrationData.apellido || ''}`.trim(),
+    email: authenticatedUser.registrationData.email,
+    phone: authenticatedUser.registrationData.telefono,
+    registrationDate: authenticatedUser.registrationDate,
+    avatarUrl: undefined,
+    gigiTone: getGigiTone(authenticatedUser.gigiCalibration),
+    beautyProfile: authenticatedUser.beautyProfile,
+    userRole: authenticatedUser.userRole,
+    salonName: authenticatedUser.salonName,
+    salonId: authenticatedUser.salonId,
+    stylistLevel: authenticatedUser.stylistLevel,
+  } : {
+    name: registrationData?.nombre ? `${registrationData.nombre} ${registrationData.apellido || ''}`.trim() : 'Usuario',
+    email: registrationData?.email || 'usuario@example.com',
+    phone: registrationData?.telefono || '',
+    registrationDate: 'Noviembre 2025',
+    avatarUrl: undefined,
+    gigiTone: getGigiTone(gigiCalibration),
+    beautyProfile: {
+      estilo: 'Natural y sofisticado',
+      colorimetria: 'Primavera cálida',
+      preferencias: ['Balayage', 'Cortes modernos', 'Colores naturales']
+    },
+    userRole: registrationData?.userRole || 'usuaria',
+    salonName: registrationData?.salonName,
+  };
+
+  // Handlers del flujo de REGISTRO
+  const handleRegistrationComplete = (data: RegistrationData) => {
+    setRegistrationData(data);
+    setIsReturningUser(false);
+    showLoading('Enviando email de verificación...', 2000, () => {
+      setCurrentPage('email-verification');
+    });
+  };
+
+  // Handlers del flujo de LOGIN
+  const handleLoginSubmit = (email: string, password: string) => {
+    showLoading('Verificando credenciales...', 1500, () => {
+      const user = authenticateUser(email, password);
+      
+      if (user) {
+        // Usuario autenticado exitosamente
+        setAuthenticatedUser(user);
+        setRegistrationData(user.registrationData);
+        setGigiCalibration(user.gigiCalibration);
+        setIsReturningUser(true);
+        
+        // Mostrar página de elección de perfil
+        showLoading('¡Bienvenido de nuevo!', 1000, () => {
+          setCurrentPage('profile-choice');
+        });
+      } else {
+        // Credenciales incorrectas (en producción mostrar error)
+        setIsLoading(false);
+        alert('Credenciales incorrectas. Prueba con:\nEmail: ana.martinez@example.com\nContraseña: 123456');
+      }
+    });
+  };
+
+  // Handler cuando elige usar perfil existente
+  const handleProfileChoiceUseExisting = () => {
+    if (authenticatedUser) {
+      showLoading('Cargando tu perfil...', 1500, () => {
+        // Ir directo al App Mode saltándose todo el test
+        setCurrentPage('app');
+      });
+    }
+  };
+
+  // Handler cuando elige crear perfil nuevo
+  const handleProfileChoiceCreateNew = () => {
+    // Limpiar calibración anterior para empezar de cero
+    setGigiCalibration(null);
+    showLoading('Preparando nueva calibración...', 1500, () => {
+      setCurrentPage('gigi-intro');
+    });
+  };
+
+  // Handlers del flujo de CALIBRACIÓN y TEST
+  const handleCalibrationComplete = (selections: CalibrationSelection) => {
+    setGigiCalibration(selections);
+    showLoading('Configurando tu asistente Gigi...', 1500, () => {
+      setCurrentPage('test');
+    });
+  };
+
+  const handleTestComplete = () => {
+    showLoading('Analizando tus respuestas...', 1500, () => {
+      setCurrentPage('avatar');
+    });
+  };
+
+  const handleAvatarComplete = (photos: File[]) => {
+    setAvatarPhotos(photos);
+    showLoading('Generando tu avatar personalizado...', 3000, () => {
+      setCurrentPage('app');
+    });
+  };
+
+  // Handler para logout desde CurrentUserBadge
+  const handleLogout = () => {
+    setAuthenticatedUser(null);
+    setRegistrationData(null);
+    setGigiCalibration(null);
+    setAvatarPhotos([]);
+    setIsReturningUser(false);
+    setCurrentPage('landing');
+  };
+
+  // Handlers para registros profesionales
+  const handleSalonRegistrationComplete = (data: any) => {
+    console.log('Salon registration:', data);
+    showLoading('Procesando registro de salón...', 2000, () => {
+      // En producción, aquí se enviaría al backend
+      alert(`✓ Salón registrado: ${data.businessName}\nEmail de verificación enviado a: ${data.email}`);
+      setCurrentPage('login');
+    });
+  };
+
+  const handleStylistRegistrationComplete = (data: any) => {
+    console.log('Stylist registration:', data);
+    showLoading('Procesando registro de estilista...', 2000, () => {
+      // En producción, aquí se enviaría al backend
+      alert(`✓ Estilista registrado: ${data.firstName} ${data.lastName}\nEmail de verificación enviado a: ${data.email}`);
+      setCurrentPage('login');
+    });
+  };
+
+  // Handler de navegación para DevTools
+  const handleDevNavigate = (direction: 'prev' | 'next') => {
+    const currentIndex = pageFlow.indexOf(currentPage);
+    
+    if (direction === 'prev' && currentIndex > 0) {
+      setCurrentPage(pageFlow[currentIndex - 1]);
+    } else if (direction === 'next' && currentIndex < pageFlow.length - 1) {
+      setCurrentPage(pageFlow[currentIndex + 1]);
+    }
+  };
+
+  // Mapeo de nombres de página legibles
+  const getPageName = (page: PageRoute): string => {
+    const pageNames: Record<PageRoute, string> = {
+      'landing': 'Hero / Landing',
+      'login': 'Login',
+      'register': 'Registro Usuario',
+      'email-verification': 'Verificación de Email',
+      'profile-choice': 'Elección de Perfil',
+      'gigi-intro': 'Introducción Gigi + Calibración',
+      'test': 'Test de Auréthica',
+      'avatar': 'Subida de Fotos Avatar',
+      'app': 'Modo App (Blog + Perfil + Búsqueda)',
+      'pro-access': 'Acceso Profesional',
+      'salon-registration': 'Registro Salón/Autónomo',
+      'stylist-registration': 'Registro Estilista',
+    };
+    return pageNames[page] || page;
+  };
+
+  // Mostrar splash screen durante carga inicial
+  if (isInitialLoading) {
+    return (
+      <SplashScreen
+        tagline="Una belleza que ilumina sin excluir"
+        progress={initialLoadingProgress}
+        minimumDuration={800}
+        onComplete={() => setIsInitialLoading(false)}
+        variant="gradient"
+      />
+    );
+  }
+
+  return (
+    <>
+      <PageRouter
+        currentPage={currentPage}
+        isLoading={isLoading}
+        loadingMessage={loadingMessage}
+        gigiCalibration={gigiCalibration}
+        registrationData={registrationData}
+        userData={userData}
+        onNavigate={setCurrentPage}
+        onRegistrationComplete={handleRegistrationComplete}
+        onLoginSubmit={handleLoginSubmit}
+        onProfileChoiceUseExisting={handleProfileChoiceUseExisting}
+        onProfileChoiceCreateNew={handleProfileChoiceCreateNew}
+        onCalibrationComplete={handleCalibrationComplete}
+        onTestComplete={handleTestComplete}
+        onAvatarComplete={handleAvatarComplete}
+        onSalonRegistrationComplete={handleSalonRegistrationComplete}
+        onStylistRegistrationComplete={handleStylistRegistrationComplete}
+      />
+
+      {/* Badge de usuario actual (solo si está logueado) */}
+      {authenticatedUser && currentPage !== 'landing' && (
+        <CurrentUserBadge
+          userName={userData.name}
+          userEmail={userData.email}
+          userRole={userData.userRole}
+          onLogout={handleLogout}
+        />
+      )}
+
+      {/* Panel de acceso rápido para desarrollo */}
+      <DevQuickAccess onQuickLogin={handleLoginSubmit} />
+      <DevTools
+        currentPage={getPageName(currentPage)}
+        onNavigate={handleDevNavigate}
+        pages={pageFlow}
+        getPageName={getPageName}
+      />
+    </>
+  );
+}
+
+/**
+ * App principal con todos los Providers
+ */
+export default function App() {
+  return (
+    <ThemeProvider>
+      <TranslationProvider>
+        <JourneyProvider>
+          <BlogProvider>
+            <SearchProvider>
+              <PremiumToastProvider position="top-right" />
+              <AppContent />
+            </SearchProvider>
+          </BlogProvider>
+        </JourneyProvider>
+      </TranslationProvider>
+    </ThemeProvider>
+  );
+}

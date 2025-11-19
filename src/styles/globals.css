@@ -1,0 +1,1292 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* Sistema de espaciado base 8px */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  
+  /* ===== SHARED FOUNDATION - AURÉTHICA DESIGN SYSTEM ===== */
+  /* Tokens compartidos entre GIGI y AURI */
+  
+  --shared-gold: #D4AF37;        /* Primary Gold - dorado radiante */
+  --shared-neutral-light: #F5F5F2;  /* Ivory - marfil */
+  --shared-neutral-dark: #1A1A1A;   /* Graphite - grafito oscuro */
+  --shared-success: #A6E22E;     /* Verde éxito */
+  --shared-warning: #FFD54F;     /* Amarillo advertencia */
+  --shared-error: #FF6F61;       /* Rojo error */
+  --shared-radius: 8px;          /* Border radius base */
+  --shared-glow: rgba(212, 175, 55, 0.4);  /* Golden glow effect */
+  
+  /* ===== GIGI (USER SYSTEM) - Lifestyle Companion ===== */
+  /* Emocional, inspirador, centrado en el usuario */
+  
+  --gigi-ivory: #0a0a0a;         /* Black - fondo principal negro */
+  --gigi-rose: #1a1a1a;          /* Dark - acentos sutiles */
+  --gigi-gold: #D4AF37;          /* Metallic Gold - toques dorados */
+  --gigi-fuscia: #FF2D95;        /* Gigi Pink - acción y personalidad */
+  --gigi-ink: #E8E6E3;           /* Texto principal claro */
+  --gigi-stone: #A8A6A3;         /* Texto secundario claro */
+  
+  /* ===== AURI (PROFESSIONAL SYSTEM) - Technical Intelligence ===== */
+  /* Técnico, luminoso, minimal - para profesionales */
+  
+  --auri-gold: #D4AF37;          /* Radiant Gold - principal */
+  --auri-ivory: #0a0a0a;         /* Black background */
+  --auri-graphite: #E8E6E3;      /* Texto claro */
+  --auri-graphite-soft: #2a2a2a; /* Graphite suave - bordes */
+  --auri-accent: #E8C878;        /* Gold accent - hover states */
+  --auri-success: #A6E22E;       /* Feedback positivo */
+  --auri-warning: #FFD54F;       /* Alertas */
+  
+  /* Legacy colors (mantener por compatibilidad) */
+  --auretica-ivory: #0a0a0a;
+  --auretica-emerald: #D4AF37;
+  --auretica-gold: #D4AF37;
+  --auretica-ink: #E8E6E3;
+  --auretica-stone: #A8A6A3;
+  --auretica-gigi: #FF2D95;
+  --auretica-beige: #1a1a1a;
+  
+  --background: #0a0a0a;
+  --foreground: var(--gigi-ink);
+  --card: #0a0a0a;
+  --card-foreground: var(--gigi-ink);
+  --popover: #0a0a0a;
+  --popover-foreground: var(--gigi-ink);
+  --primary: var(--shared-gold);
+  --primary-foreground: #0a0a0a;
+  --secondary: var(--gigi-rose);
+  --secondary-foreground: var(--gigi-ink);
+  --muted: #1a1a1a;
+  --muted-foreground: var(--gigi-stone);
+  --accent: var(--gigi-gold);
+  --accent-foreground: #0a0a0a;
+  --destructive: var(--shared-error);
+  --destructive-foreground: #ffffff;
+  --border: rgba(212, 175, 55, 0.15);
+  --input: transparent;
+  --input-background: #0a0a0a;
+  --switch-background: #2a2a2a;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--shared-gold);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: var(--shared-radius);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Dark mode con paleta Auréthica adaptada */
+  --gigi-ivory: #1a1d21;
+  --gigi-gold: #ffd700;
+  --gigi-ink: #e8e9ea;
+  --gigi-stone: #9ca3af;
+  --gigi-fuscia: #ff2d95;
+  
+  --auri-ivory: #1a1d21;
+  --auri-graphite: #e8e9ea;
+  
+  --background: #0f1114;
+  --foreground: #e8e9ea;
+  --card: #1a1d21;
+  --card-foreground: #e8e9ea;
+  --popover: #1a1d21;
+  --popover-foreground: #e8e9ea;
+  --primary: var(--shared-gold);
+  --primary-foreground: #0f1114;
+  --secondary: #2a2d31;
+  --secondary-foreground: #e8e9ea;
+  --muted: #2a2d31;
+  --muted-foreground: #9ca3af;
+  --accent: #ffd700;
+  --accent-foreground: #0f1114;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: transparent;
+  --input-background: #1a1d21;
+  --ring: var(--shared-gold);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: var(--shared-gold);
+  --chart-2: #ffd700;
+  --chart-3: #ff2d95;
+  --chart-4: #60a5fa;
+  --chart-5: #a78bfa;
+  --sidebar: #1a1d21;
+  --sidebar-foreground: #e8e9ea;
+  --sidebar-primary: var(--shared-gold);
+  --sidebar-primary-foreground: #0f1114;
+  --sidebar-accent: #2a2d31;
+  --sidebar-accent-foreground: #e8e9ea;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--shared-gold);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    transition-property: color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  html, body, #root {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  
+  /* Suavizar transición de tema */
+  html {
+    transition: background-color 300ms ease-in-out;
+  }
+  
+  /* Prevenir flash durante cambio de tema */
+  html.dark {
+    color-scheme: dark;
+  }
+  
+  html.light {
+    color-scheme: light;
+  }
+}
+
+/**
+ * Base typography for GIGI (User System)
+ * Poppins for body, Playfair Display for headings
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--gigi-ink);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--gigi-ink);
+    }
+
+    h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--gigi-ink);
+    }
+
+    h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--gigi-ink);
+    }
+
+    p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--gigi-stone);
+    }
+
+    label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--gigi-ink);
+    }
+
+    button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    input {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+}
+
+/**
+ * AURI Professional Typography
+ * Inter for technical interface
+ * Use class .auri-text to apply AURI typography
+ */
+.auri-text h1,
+.auri-text h2,
+.auri-text h3,
+.auri-text h4,
+.auri-text h5,
+.auri-text h6,
+.auri-text p,
+.auri-text label,
+.auri-text button,
+.auri-text input,
+.auri-text span {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.auri-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--auri-graphite);
+}
+
+.auri-body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--auri-graphite);
+}
+
+html {
+  font-size: var(--font-size);
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+body {
+  background-color: var(--gigi-ivory);
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  position: relative;
+  top: 0;
+  left: 0;
+  line-height: 1.6;
+}
+
+#root {
+  background-color: var(--gigi-ivory);
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  line-height: 0;
+}
+
+#root > * {
+  line-height: normal;
+}
+
+/* Eliminar cualquier espacio por defecto en imágenes */
+img {
+  display: block;
+  border: 0;
+  vertical-align: top;
+}
+
+/* Scroll Snap para las secciones deslizantes */
+.scroll-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  line-height: 0;
+  display: block;
+}
+
+.scroll-section > * {
+  line-height: normal;
+}
+
+section {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  display: block;
+  line-height: 0;
+}
+
+section > * {
+  line-height: normal;
+}
+
+/* Snap start para secciones individuales */
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Smooth scroll optimizado */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* En mobile, ajustar el scroll snap para mejor UX */
+@media (max-width: 768px) {
+  .scroll-container {
+    scroll-snap-type: y proximity;
+  }
+}
+
+/* ===== AURI PROFESSIONAL EFFECTS ===== */
+
+/* Golden glow effect for AURI buttons */
+.auri-glow {
+  box-shadow: 0 0 20px var(--shared-glow);
+  transition: box-shadow 0.3s ease;
+}
+
+.auri-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+/* AURI sharp borders */
+.auri-border {
+  border: 1px solid var(--auri-graphite-soft);
+}
+
+/* AURI card style - clean and technical */
+.auri-card {
+  background: var(--auri-ivory);
+  border: 1px solid var(--auri-graphite-soft);
+  border-radius: var(--shared-radius);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.auri-card:hover {
+  border-color: var(--auri-gold);
+  box-shadow: 0 0 15px var(--shared-glow);
+}
+
+/* ===== SHARED COMPONENTS ===== */
+
+/* Glass effect */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.no-hover-effects * {
+  transition: none !important;
+}
+
+/* Estilos dinámicos para botones */
+.visual-modern button {
+  background: linear-gradient(135deg, var(--auretica-emerald), var(--auretica-gold));
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.visual-classic button {
+  background: var(--auretica-emerald);
+  border: 2px solid var(--auretica-gold);
+  transition: all 0.2s ease;
+}
+
+.visual-minimal button {
+  background: transparent;
+  border: 1px solid var(--auretica-emerald);
+  color: var(--auretica-emerald);
+  transition: all 0.2s ease;
+}
+
+.visual-neon button {
+  background: var(--auretica-emerald);
+  box-shadow: 
+    0 0 10px var(--auretica-gigi),
+    0 0 20px var(--auretica-gigi),
+    0 0 30px var(--auretica-gigi);
+  transition: all 0.3s ease;
+}
+
+/* Efectos hover dinámicos */
+.visual-scale button:hover {
+  transform: scale(1.05);
+}
+
+.visual-glow button:hover {
+  box-shadow: 0 0 20px var(--auretica-gold);
+}
+
+.visual-lift button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS Custom Properties para diseño dinámico */
+.hero-section {
+  background-overlay: var(--hero-overlay, rgba(0,0,0,0.3));
+}
+
+.signature-element {
+  transform: rotate(var(--signature-rotation, 3deg));
+  font-size: calc(1rem * var(--heart-size, 100) / 100);
+}
+
+.animation-element {
+  animation-duration: var(--animation-duration, 60ms);
+}
+
+/* Utilidades para el editor visual */
+.editable-hover:hover {
+  outline: 2px dashed var(--auretica-gigi);
+  outline-offset: 2px;
+}
+
+/* Partículas de fondo (si está habilitado) */
+.particle-background::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 45, 149, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(201, 162, 79, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(1, 50, 32, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Herramientas de desarrollo - Siempre visibles en todas las páginas */
+.dev-tools-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.dev-tools-layer > * {
+  pointer-events: auto;
+}
+
+/* Asegurar que elementos fixed estén siempre encima del scroll-snap */
+[style*="position: fixed"] {
+  z-index: 99998 !important;
+}
+
+/* Contenedor de scroll que no afecte elementos fixed */
+.scroll-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Elementos flotantes que deben mantenerse visibles */
+.floating-tool {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+/* Gradiente radial para efectos especiales */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Efectos especiales para el botón de Gigi */
+.gigi-button-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 45, 149, 0.4));
+}
+
+.gigi-button-glow:hover {
+  filter: drop-shadow(0 0 30px rgba(255, 45, 149, 0.6));
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 30px rgba(255, 45, 149, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 45, 149, 0.8));
+  }
+}
+
+/* Animación de rotación sutil para el botón de Gigi */
+.gigi-button-rotate {
+  animation: gentle-rotate 20s linear infinite;
+}
+
+@keyframes gentle-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animaciones para el mechón de cabello de Gigi */
+.gigi-hair-float {
+  animation: hair-float 6s ease-in-out infinite;
+}
+
+.gigi-hair-wave {
+  animation: hair-wave 8s ease-in-out infinite;
+}
+
+@keyframes hair-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+}
+
+@keyframes hair-wave {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(2deg) scale(1.02);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.02);
+  }
+}
+
+/* Efectos de cabello flotante */
+.hair-strand {
+  animation: hair-strand-float 5s ease-in-out infinite;
+}
+
+@keyframes hair-strand-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-25px) rotate(0deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-10px) rotate(-5deg);
+    opacity: 0.5;
+  }
+}
+
+/* Hover effect específico para el mechón */
+.gigi-hair-hover:hover {
+  animation: hair-excited 1s ease-in-out infinite;
+}
+
+@keyframes hair-excited {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  50% {
+    transform: scale(1.08) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+}
+
+/* Integración perfecta de Gigi como fondo */
+.gigi-background-blend {
+  opacity: 0.4;
+  filter: sepia(0.1) saturate(1.1) brightness(1.1);
+  mix-blend-mode: multiply;
+  transform: scale(1.05);
+}
+
+/* Efectos sutiles para que Gigi se integre naturalmente */
+@media (min-width: 768px) {
+  .gigi-background-blend {
+    opacity: 0.5;
+    transform: scale(1.02) translateX(-5%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gigi-background-blend {
+    opacity: 0.6;
+    transform: scale(1.0) translateX(-8%);
+  }
+}
+
+/* Fondo compuesto de personalidades de Gigi */
+.gigi-personality-background {
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  filter: sepia(0.3) contrast(1.2) brightness(1.1);
+  animation: gigi-personality-breathing 8s ease-in-out infinite;
+}
+
+/* Efectos específicos para cada personalidad de fondo */
+.gigi-elegancia-bg {
+  filter: sepia(0.2) brightness(1.2) contrast(1.1) saturate(0.8);
+  opacity: 0.25;
+}
+
+.gigi-pasion-bg {
+  filter: sepia(0.4) saturate(1.4) brightness(1.05) hue-rotate(10deg);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+.gigi-lujo-bg {
+  filter: sepia(0.5) saturate(1.2) brightness(1.15) hue-rotate(-15deg);
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+}
+
+/* Breathing sutil para las personalidades de fondo */
+@keyframes gigi-personality-breathing {
+  0%, 100% {
+    opacity: var(--base-opacity, 0.15);
+    transform: var(--base-transform, scale(1.1));
+  }
+  50% {
+    opacity: calc(var(--base-opacity, 0.15) * 1.3);
+    transform: var(--base-transform, scale(1.1)) scale(1.02);
+  }
+}
+
+/* Animación sutil de breathing para Gigi */
+@keyframes gigi-breathing {
+  0%, 100% {
+    transform: scale(1.0) translateX(-8%);
+  }
+  50% {
+    transform: scale(1.01) translateX(-7%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gigi-background-blend {
+    animation: gigi-breathing 8s ease-in-out infinite;
+  }
+}
+
+/* Efectos de interacción cuando aparece la coleta */
+.ponytail-main ~ .gigi-background-blend {
+  animation: gigi-excited 2s ease-in-out forwards;
+}
+
+@keyframes gigi-excited {
+  0% {
+    transform: scale(1.0) translateX(-8%);
+    filter: sepia(0.1) saturate(1.1) brightness(1.1);
+  }
+  50% {
+    transform: scale(1.02) translateX(-5%);
+    filter: sepia(0.15) saturate(1.3) brightness(1.2);
+  }
+  100% {
+    transform: scale(1.01) translateX(-6%);
+    filter: sepia(0.12) saturate(1.2) brightness(1.15);
+  }
+}
+
+/* Mejora la legibilidad del contenido sobre Gigi */
+.content-over-gigi {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+}
+
+/* Posicionamiento responsivo del texto manuscrito en Hero */
+@media (min-width: 768px) {
+  .hero-text-position {
+    bottom: 60px !important; /* Más abajo en desktop */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-text-position {
+    bottom: 40px !important; /* Aún más abajo en pantallas grandes */
+  }
+}
+
+/* Animaciones para la página de calibración */
+.heart-pulse {
+  animation: heart-pulse 2s ease-in-out infinite;
+}
+
+@keyframes heart-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Respiración de Gigi en calibración */
+.gigi-breathing {
+  animation: gigi-breathing-calibration 3s ease-in-out infinite;
+}
+
+@keyframes gigi-breathing-calibration {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Collage de personalidades de Gigi */
+.gigi-personality-collage {
+  opacity: 0.85;
+  transition: all 0.5s ease;
+}
+
+.gigi-personality-collage:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Efectos específicos para cada personalidad */
+.gigi-elegancia {
+  filter: sepia(0.1) brightness(1.1) contrast(1.05);
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+}
+
+.gigi-elegancia:hover {
+  filter: sepia(0.15) brightness(1.15) contrast(1.1);
+  box-shadow: 0 25px 50px rgba(255, 255, 255, 0.4);
+}
+
+.gigi-pasion {
+  filter: sepia(0.15) saturate(1.2) brightness(1.05);
+  box-shadow: 0 20px 40px rgba(255, 45, 149, 0.2);
+}
+
+.gigi-pasion:hover {
+  filter: sepia(0.2) saturate(1.3) brightness(1.1);
+  box-shadow: 0 25px 50px rgba(255, 45, 149, 0.3);
+}
+
+.gigi-lujo {
+  filter: sepia(0.2) saturate(1.15) brightness(1.1);
+  box-shadow: 0 20px 40px rgba(201, 162, 79, 0.2);
+}
+
+.gigi-lujo:hover {
+  filter: sepia(0.25) saturate(1.25) brightness(1.15);
+  box-shadow: 0 25px 50px rgba(201, 162, 79, 0.3);
+}
+
+/* Animación de presentación escalonada del collage */
+.gigi-collage-enter-left {
+  animation: collage-enter-left 1s ease-out forwards;
+}
+
+.gigi-collage-enter-right {
+  animation: collage-enter-right 1s ease-out forwards;
+}
+
+.gigi-collage-enter-top {
+  animation: collage-enter-top 1s ease-out forwards;
+}
+
+@keyframes collage-enter-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.8) rotate(-15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(-8deg);
+  }
+}
+
+@keyframes collage-enter-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8) rotate(15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(8deg);
+  }
+}
+
+@keyframes collage-enter-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.8) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(3deg);
+  }
+}
+
+/* Efectos cuando se hace hover sobre el botón principal */
+.gigi-main-button:hover ~ .gigi-personalities .gigi-personality-card {
+  animation: gigi-personalities-excited 2s ease-in-out infinite;
+}
+
+@keyframes gigi-personalities-excited {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  75% {
+    transform: scale(1.02);
+  }
+}
+
+/* Breathing sutil para las personalidades */
+.gigi-personality-breathing {
+  animation: personality-breathing 4s ease-in-out infinite;
+}
+
+@keyframes personality-breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Efecto de reconocimiento cuando se selecciona una personalidad */
+.personality-selected {
+  animation: personality-selected 1s ease-out forwards;
+}
+
+@keyframes personality-selected {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 20px rgba(255, 45, 149, 0);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 0 rgba(255, 45, 149, 0);
+  }
+}
+
+/* Animaciones para la sección de blog */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efectos de hover para posts del blog */
+.blog-post-hover {
+  transition: all 0.3s ease;
+}
+
+.blog-post-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Efectos de like button */
+.like-button-pulse {
+  animation: like-pulse 0.3s ease-out;
+}
+
+@keyframes like-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Efecto de bookmark button */
+.bookmark-button-bounce {
+  animation: bookmark-bounce 0.4s ease-out;
+}
+
+@keyframes bookmark-bounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Gradiente especial para el blog CTA */
+.blog-cta-gradient {
+  background: linear-gradient(135deg, var(--auretica-emerald) 0%, var(--auretica-gold) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-cta-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Efectos de interacción para tags del blog */
+.blog-tag-hover {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.blog-tag-hover:hover {
+  transform: scale(1.05);
+}
+
+.blog-tag-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--auretica-gold);
+  transition: width 0.3s ease;
+}
+
+.blog-tag-hover:hover::after {
+  width: 100%;
+}
+
+/* Efecto de escritura a mano para el texto manuscrito */
+.handwriting-char {
+  display: inline-block;
+  opacity: 0;
+  animation: handwriting-appear 0.3s ease-out forwards;
+  transform-origin: bottom left;
+}
+
+@keyframes handwriting-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) translateX(-3px) scale(0.8) rotate(-5deg);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-2px) translateX(1px) scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Efecto sutil de "tinta" que se asienta */
+.handwriting-text {
+  filter: blur(0px);
+  animation: ink-settle 1.5s ease-out forwards;
+}
+
+@keyframes ink-settle {
+  0% {
+    filter: blur(0.5px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+/* ===== EFECTO CROMADO DORADO PARA TODOS LOS BOTONES ===== */
+
+/* Clase principal para botones cromados dorados */
+.chrome-gold-button {
+  position: relative;
+  background: linear-gradient(135deg, #C9A24F 0%, #D4AF37 25%, #E8C878 50%, #D4AF37 75%, #C9A24F 100%) !important;
+  background-size: 200% 200% !important;
+  animation: chrome-gold-shimmer 3s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.4),
+    0 4px 15px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.6) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Reflejo metálico animado sobre el botón */
+.chrome-gold-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  animation: chrome-gold-reflection 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradiente radial sutil de luz */
+.chrome-gold-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(232, 200, 120, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Efecto hover - brillo intensificado */
+.chrome-gold-button:hover {
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.6),
+    0 6px 20px rgba(212, 175, 55, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.chrome-gold-button:hover::after {
+  opacity: 1;
+}
+
+/* Efecto activo/presionado */
+.chrome-gold-button:active {
+  transform: translateY(0px);
+  box-shadow: 
+    0 0 15px rgba(212, 175, 55, 0.5),
+    0 2px 10px rgba(212, 175, 55, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Animación de shimmer del gradiente */
+@keyframes chrome-gold-shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animación del reflejo metálico */
+@keyframes chrome-gold-reflection {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Asegurar que el texto esté por encima de los efectos */
+.chrome-gold-button > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Variante para botones de Gigi con dorado-fucsia */
+.chrome-gigi-button {
+  position: relative;
+  background: linear-gradient(135deg, #D4AF37 0%, #FF2D95 50%, #D4AF37 100%) !important;
+  background-size: 200% 200% !important;
+  animation: chrome-gigi-shimmer 3s ease-in-out infinite;
+  box-shadow: 
+    0 0 25px rgba(212, 175, 55, 0.4),
+    0 0 35px rgba(255, 45, 149, 0.3),
+    0 4px 15px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.6) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.chrome-gigi-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+  animation: chrome-gold-reflection 3.5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chrome-gigi-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255, 45, 149, 0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chrome-gigi-button:hover {
+  box-shadow: 
+    0 0 35px rgba(212, 175, 55, 0.5),
+    0 0 45px rgba(255, 45, 149, 0.4),
+    0 6px 20px rgba(212, 175, 55, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.chrome-gigi-button:hover::after {
+  opacity: 1;
+}
+
+@keyframes chrome-gigi-shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.chrome-gigi-button > * {
+  position: relative;
+  z-index: 2;
+}
