@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ChevronLeft } from 'lucide-react';
-import gigiLogoSimple from 'figma:asset/d6b411d972cd0bf19ef7521b7b038f43509e5335.png';
+import gigiLogoSimple from '../assets/gigi-logo.png';
 
 type CalibrationOption = 'neutro' | 'suave' | 'equilibrado' | 'firme' | 'intimo';
 
@@ -509,3 +509,5 @@ export function GigiCalibration({ onComplete, onBack }: GigiCalibrationProps) {
     </section>
   );
 }
+
+

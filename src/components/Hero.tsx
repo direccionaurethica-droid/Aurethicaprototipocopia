@@ -3,7 +3,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { UserPlus, LogIn, Crown } from "lucide-react";
 import { motion } from "motion/react";
 import { ProAccessModal } from "./ProAccessModal";
-import newHeroBanner from "figma:asset/8cb24d5ac69c65fe97935e0493f7d27cd4fea4f9.png";
+import newHeroBanner from "../assets/hero-banner.jpg";
 
 interface HeroProps {
   onStartTest?: () => void;

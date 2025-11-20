@@ -9,7 +9,7 @@ import { BackButton } from '../components/BackButton';
 import { AurethicaSpinner } from '../components/AurethicaSpinner';
 import { MetallicText } from '../components/MetallicText';
 import { MetallicButton } from '../components/MetallicButton';
-import auréthicaLogoNeon from 'figma:asset/fed00b8fb99f1d60d734c20b6fc58a96b6148a96.png';
+import auréthicaLogoNeon from '../assets/aurethica-logo.png';
 
 interface ProfileChoicePageProps {
   userName: string;
@@ -263,3 +263,4 @@ export function ProfileChoicePage({
     </motion.div>
   );
 }
+

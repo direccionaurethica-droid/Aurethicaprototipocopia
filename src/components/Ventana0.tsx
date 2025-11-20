@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import { GigiCalibration } from './GigiCalibration';
 import { ChevronLeft } from 'lucide-react';
-import gigiLogo from 'figma:asset/d6b411d972cd0bf19ef7521b7b038f43509e5335.png';
+import gigiLogo from '../assets/gigi-logo.png';
 
 type CalibrationOption = 'neutro' | 'suave' | 'equilibrado' | 'firme' | 'intimo';
 
@@ -212,3 +212,4 @@ export function Ventana0({ onContinue, onCalibrationComplete, onBack }: Ventana0
     </div>
   );
 }
+

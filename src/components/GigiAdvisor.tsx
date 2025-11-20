@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Send, X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { GigiHairIcon } from './GigiHairIcon';
-import gigiLogoSimple from 'figma:asset/d6b411d972cd0bf19ef7521b7b038f43509e5335.png';
+import gigiLogoSimple from '../assets/gigi-logo.png';
 
 interface Message {
   id: string;
@@ -337,3 +337,4 @@ export function GigiAdvisor({ postContext, userProfile, onClose }: GigiAdvisorPr
     </motion.div>
   );
 }
+

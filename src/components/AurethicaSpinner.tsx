@@ -6,7 +6,7 @@
 
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import auréthicaLogoNeon from 'figma:asset/fed00b8fb99f1d60d734c20b6fc58a96b6148a96.png';
+import auréthicaLogoNeon from '../assets/aurethica-logo.png';
 
 interface AurethicaSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
@@ -364,3 +364,5 @@ export function AurethicaSpinner({
     </div>
   );
 }
+
+
