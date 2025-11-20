@@ -25,10 +25,7 @@ import { getGigiTone } from './lib/utils/helpers';
 // Mock users
 import { authenticateUser, type MockUser } from './lib/mock/mockUsers';
 
-// Dev tools
-import { DevQuickAccess } from './components/DevQuickAccess';
 import { CurrentUserBadge } from './components/CurrentUserBadge';
-import { DevTools } from './components/DevTools';
 
 function AppContent() {
   // Estado de carga inicial
@@ -300,15 +297,6 @@ function AppContent() {
           onLogout={handleLogout}
         />
       )}
-
-      {/* Panel de acceso rápido para desarrollo */}
-      <DevQuickAccess onQuickLogin={handleLoginSubmit} />
-      <DevTools
-        currentPage={getPageName(currentPage)}
-        onNavigate={handleDevNavigate}
-        pages={pageFlow}
-        getPageName={getPageName}
-      />
     </>
   );
 }
