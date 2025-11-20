@@ -22,30 +22,24 @@ interface TranslationProviderProps {
 
 export function TranslationProvider({ children }: TranslationProviderProps) {
   const [language, setLanguageState] = useState<Language>(() => {
-    // Intentar cargar idioma guardado
     const saved = StorageAPI.getLanguagePreference();
     if (saved && (saved === 'es' || saved === 'ca' || saved === 'en')) {
       return saved as Language;
     }
-    
-    // Detectar idioma del navegador
     const browserLang = navigator.language.split('-')[0];
     if (browserLang === 'es' || browserLang === 'ca' || browserLang === 'en') {
       return browserLang as Language;
     }
-    
     return DEFAULT_LANGUAGE as Language;
   });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     StorageAPI.saveLanguagePreference(lang);
-    // Actualizar atributo lang del documento
     document.documentElement.lang = lang;
   };
 
   useEffect(() => {
-    // Establecer idioma inicial en el documento
     document.documentElement.lang = language;
   }, [language]);
 
@@ -55,11 +49,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     t: translations[language],
   };
 
-  return (
-    <TranslationContext.Provider value={value}>
-      {children}
-    </TranslationContext.Provider>
-  );
+  return <TranslationContext.Provider value={value}>{children}</TranslationContext.Provider>;
 }
 
 /**
@@ -67,11 +57,11 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
  */
 export function useTranslation() {
   const context = useContext(TranslationContext);
-  
+
   if (context === undefined) {
     throw new Error('useTranslation must be used within a TranslationProvider');
   }
-  
+
   return context;
 }
 
@@ -83,6 +73,6 @@ export function withTranslation<P extends object>(
 ) {
   return function TranslatedComponent(props: P) {
     const { t, language } = useTranslation();
-    return <Component {...props} t={t} language={language} />;
+    return <Component { ...props } t = { t } language = { language } />;
   };
 }

@@ -14,3 +14,5 @@ export { AvatarPage } from './AvatarPage';
 export { AppModePage } from './AppModePage';
 export { SalonRegistrationPage } from './SalonRegistrationPage';
 export { StylistRegistrationPage } from './StylistRegistrationPage';
+export { EmpresaDashboardPage } from './EmpresaDashboardPage';
+export { EstilistaDashboardPage } from './EstilistaDashboardPage';
