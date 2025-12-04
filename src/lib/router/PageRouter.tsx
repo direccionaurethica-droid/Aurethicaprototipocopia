@@ -16,16 +16,14 @@ import {
   AvatarPage,
   AppModePage,
   SalonRegistrationPage,
-  StylistRegistrationPage,
-  EmpresaDashboardPage,
-  EstilistaDashboardPage
+  StylistRegistrationPage
 } from '../../pages';
 
 import type { CalibrationSelection, RegistrationData } from '../types';
 import type { SalonRegistrationData } from '../../components/SalonRegistration';
 import type { StylistRegistrationData } from '../../components/StylistRegistration';
 
-export type PageRoute =
+export type PageRoute = 
   | 'landing'
   | 'register'
   | 'email-verification'
@@ -37,9 +35,7 @@ export type PageRoute =
   | 'app'
   | 'pro-access'
   | 'salon-registration'
-  | 'stylist-registration'
-  | 'empresa-dashboard'
-  | 'estilista-dashboard';
+  | 'stylist-registration';
 
 interface PageRouterProps {
   currentPage: PageRoute;
@@ -186,25 +182,6 @@ export function PageRouter({
         <StylistRegistrationPage
           key="stylist-registration"
           onComplete={onStylistRegistrationComplete || (() => {})}
-          onBack={() => onNavigate('landing')}
-        />
-      )}
-    
-
-      {currentPage === 'empresa-dashboard' && (
-        <EmpresaDashboardPage
-          key="empresa-dashboard"
-          userEmail={userData?.email || ''}
-          userName={userData?.name}
-          onBack={() => onNavigate('landing')}
-        />
-      )}
-
-      {currentPage === 'estilista-dashboard' && (
-        <EstilistaDashboardPage
-          key="estilista-dashboard"
-          userEmail={userData?.email || ''}
-          userName={userData?.name}
           onBack={() => onNavigate('landing')}
         />
       )}

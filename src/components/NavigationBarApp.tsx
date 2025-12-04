@@ -3,7 +3,7 @@ import { Search, Sparkles, User, Calendar, Users, BarChart3, Scissors, Building2
 import { ThemeToggle } from './ThemeToggle';
 import type { UserRole } from '../lib/types';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import gigiLogoSimple from "../assets/gigi-logo.png";
+import gigiLogoSimple from "figma:asset/d6b411d972cd0bf19ef7521b7b038f43509e5335.png";
 
 export type AppViewType = 'blog' | 'profile' | 'search' | 'agenda' | 'clientas' | 'estadisticas' | 'estilistas';
 
@@ -330,4 +330,3 @@ export function NavigationBarApp({ currentView, onViewChange, userRole = 'usuari
     </>
   );
 }
-

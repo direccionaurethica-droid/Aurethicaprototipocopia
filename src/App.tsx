@@ -49,8 +49,6 @@ function AppContent() {
     'pro-access',
     'salon-registration',
     'stylist-registration',
-    'empresa-dashboard',
-    'estilista-dashboard',
   ];
   
   // Estado de loading
@@ -210,30 +208,19 @@ function AppContent() {
   // Handlers para registros profesionales
   const handleSalonRegistrationComplete = (data: any) => {
     console.log('Salon registration:', data);
-    // Guardar datos del salón
-    setRegistrationData({
-      ...data,
-      email: data.email,
-      nombre: data.businessName,
-      userRole: 'empresa',
-    } as any);
-    showLoading('✓ Registro completado. Accediendo a tu dashboard...', 1500, () => {
-      setCurrentPage('empresa-dashboard');
+    showLoading('Procesando registro de salón...', 2000, () => {
+      // En producción, aquí se enviaría al backend
+      alert(`✓ Salón registrado: ${data.businessName}\nEmail de verificación enviado a: ${data.email}`);
+      setCurrentPage('login');
     });
   };
 
   const handleStylistRegistrationComplete = (data: any) => {
     console.log('Stylist registration:', data);
-    // Guardar datos del estilista
-    setRegistrationData({
-      ...data,
-      email: data.email,
-      nombre: data.firstName,
-      apellido: data.lastName,
-      userRole: 'estilista',
-    } as any);
-    showLoading('✓ Registro completado. Accediendo a tu dashboard...', 1500, () => {
-      setCurrentPage('estilista-dashboard');
+    showLoading('Procesando registro de estilista...', 2000, () => {
+      // En producción, aquí se enviaría al backend
+      alert(`✓ Estilista registrado: ${data.firstName} ${data.lastName}\nEmail de verificación enviado a: ${data.email}`);
+      setCurrentPage('login');
     });
   };
 
@@ -263,8 +250,6 @@ function AppContent() {
       'pro-access': 'Acceso Profesional',
       'salon-registration': 'Registro Salón/Autónomo',
       'stylist-registration': 'Registro Estilista',
-      'empresa-dashboard': 'Dashboard Empresarial',
-      'estilista-dashboard': 'Dashboard Estilista',
     };
     return pageNames[page] || page;
   };

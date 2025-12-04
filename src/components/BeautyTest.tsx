@@ -1,5 +1,5 @@
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import gigiLogoSimple from '../assets/gigi-logo.png';
+import gigiLogoSimple from 'figma:asset/d6b411d972cd0bf19ef7521b7b038f43509e5335.png';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'motion/react';
@@ -452,4 +452,3 @@ export function BeautyTest({ gigiPersonality: calibrationData, onComplete, onBac
     </section>
   );
 }
-
